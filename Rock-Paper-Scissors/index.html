@@ -1,11 +1,26 @@
 <!DOCTYPE html>
 <html>
+<head>
+  <meta charset="UTF-8">
+  <title>Rock Paper Scissors</title>
+</head>
+
+<body>
+  <div class = "keys">
+    <button id = "rock"> Rock </button>
+    <button id = "paper"> Paper </button>
+    <button id = "scissors"> Scissors </button>
+    
+  </div>
+</body>
 
 <script>
 
     // global variables
     let playerScore = 0;
     let computerScore = 0;
+
+    const btns = document.querySelectorAll('button');
 
     function computerPlay() {
         let choice = Math.floor(Math.random() * 3); // 0 - 2 | adding an int would apply to the min value in range
@@ -25,40 +40,35 @@
         
         // Determines a draw
         if (player === computer) {
-            return 'Draw! ' + player + ' ties ' + computer + '!'
+            console.log('Draw! ' + player + ' ties ' + computer + '!'); return;
         }
 
         switch (player) {
             case "rock":
                 if (computer === "paper") {
                     ++computerScore
-                    return "You lose! " + computer + " beats " + player
+                    console.log("You lose! " + computer + " beats " + player); break;
                 } else if (computer === "scissors") 
                     ++playerScore
-                    return "You win! " + player + " beats " + computer
+                    console.log("You win! " + player + " beats " + computer); break;
             case "paper":
                 if (computer === "rock") {
                     ++playerScore
-                    return "You win! " + player + " beats " + computer
+                    console.log("You win! " + player + " beats " + computer); break;
                 } else if (computer === "scissors") 
                     ++computerScore
-                    return "You lose! " + computer + " beats " + player
+                    console.log("You lose! " + computer + " beats " + player); break;
             case "scissors":
                 if (computer === "rock") {
                     ++computerScore
-                    return "You lose! " + computer + " beats " + player
+                    console.log("You lose! " + computer + " beats " + player); break;
                 } else if (computer === "paper")
                     ++playerScore
-                    return "You win! " + player + " beats " + computer
+                    console.log("You win! " + player + " beats " + computer); break;
         }
     }
 
-    function game() {
-
-        for (let round = 0; round < 5; round++) {
-            let playerInput = prompt("Type in Rock, Paper, or Scissors")
-            console.log(playRound(playerInput, computerPlay()))
-        }
+    function showResults() {
 
         // Output results nicer
         console.log("\n")
@@ -77,6 +87,16 @@
         playerScore = 0;
         computerScore = 0;
     }
+
+    btns.forEach((button) => {
+        button.addEventListener('click', (e) => {
+            playRound(button.id, computerPlay());
+            //showResults();
+            //playRound(button.id, computerPlay());
+            //console.log(computerPlay());
+            //console.log(button.id);
+        });
+    });
 
 </script>
 

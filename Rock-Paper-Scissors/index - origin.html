@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<script>
+
+    // global variables
+    let playerScore = 0;
+    let computerScore = 0;
+
+    function computerPlay() {
+        let choice = Math.floor(Math.random() * 3); // 0 - 2 | adding an int would apply to the min value in range
+        if (choice == 0)
+            return "rock"
+        else if (choice == 1)
+            return "paper"
+        else if (choice == 2)
+            return "scissors"
+    }
+
+    function playRound(playerSelection, computerSelection) {
+        // Declare local variables for player and computer
+        // Make sure function is case insensitive
+        let player = playerSelection.toLowerCase();
+        let computer = computerSelection.toLowerCase();
+        
+        // Determines a draw
+        if (player === computer) {
+            return 'Draw! ' + player + ' ties ' + computer + '!'
+        }
+
+        switch (player) {
+            case "rock":
+                if (computer === "paper") {
+                    ++computerScore
+                    return "You lose! " + computer + " beats " + player
+                } else if (computer === "scissors") 
+                    ++playerScore
+                    return "You win! " + player + " beats " + computer
+            case "paper":
+                if (computer === "rock") {
+                    ++playerScore
+                    return "You win! " + player + " beats " + computer
+                } else if (computer === "scissors") 
+                    ++computerScore
+                    return "You lose! " + computer + " beats " + player
+            case "scissors":
+                if (computer === "rock") {
+                    ++computerScore
+                    return "You lose! " + computer + " beats " + player
+                } else if (computer === "paper")
+                    ++playerScore
+                    return "You win! " + player + " beats " + computer
+        }
+    }
+
+    function game() {
+
+        for (let round = 0; round < 5; round++) {
+            let playerInput = prompt("Type in Rock, Paper, or Scissors")
+            console.log(playRound(playerInput, computerPlay()))
+        }
+
+        // Output results nicer
+        console.log("\n")
+        if (playerScore > computerScore) {
+            console.log("You're the winner with " + playerScore + " wins!")
+            console.log("Computer loses with " + computerScore + " win(s)!")
+        } 
+        if (computerScore > playerScore) {
+            console.log("Computer is the winner with " + computerScore + " wins!")
+            console.log("You're the loser with " + playerScore + " win(s)!")
+        }
+        if (playerScore == computerScore) {
+            console.log("It's a draw! Both with " + playerScore +  " wins!")
+        }
+
+        playerScore = 0;
+        computerScore = 0;
+    }
+
+</script>
+
+</html>
