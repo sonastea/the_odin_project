@@ -48,24 +48,24 @@
         switch (player) {
             case "rock":
                 if (computer === "paper") {
-                    ++computerScore
+                    ++computerScore;
                     console.log("You lose! " + computer + " beats " + player); break;
                 } else if (computer === "scissors") 
                     ++playerScore
                     console.log("You win! " + player + " beats " + computer); break;
             case "paper":
                 if (computer === "rock") {
-                    ++playerScore
+                    ++playerScore;
                     console.log("You win! " + player + " beats " + computer); break;
                 } else if (computer === "scissors") 
-                    ++computerScore
+                    ++computerScore;
                     console.log("You lose! " + computer + " beats " + player); break;
             case "scissors":
                 if (computer === "rock") {
-                    ++computerScore
+                    ++computerScore;
                     console.log("You lose! " + computer + " beats " + player); break;
                 } else if (computer === "paper")
-                    ++playerScore
+                    ++playerScore;
                     console.log("You win! " + player + " beats " + computer); break;
         }
     }
